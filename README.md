@@ -17,9 +17,22 @@
 
 ---
 
+## 🛠️ Pré-requisitos de Sistema
+
+Antes de executar, certifique-se de que seu ambiente possui:
+
+1.  **Java JDK 17** ou superior.
+2.  **Apache Maven** (3.8+).
+3.  **Navegadores Instalados** (para testes E2E):
+    *   **Google Chrome** (Necessário para TP5 e AT).
+    *   **Mozilla Firefox** (Necessário para TP2).
+    *   *Nota: Os drivers (chromedriver/geckodriver) são baixados automaticamente, mas os navegadores precisam estar instalados no S.O.*
+
+---
+
 ## ⚡ Guia Rápido de Execução
 
-Para auditar ou testar os projetos, utilize os seguintes comandos no terminal (certifique-se de ter o Maven e JDK 17+ instalados):
+Para auditar ou testar os projetos, utilize os seguintes comandos no terminal:
 
 ### 🚀 Auditoria Completa Automática
 Para rodar todos os testes de todos os projetos em sequência, execute o script na raiz:
