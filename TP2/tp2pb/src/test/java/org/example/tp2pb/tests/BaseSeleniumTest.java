@@ -4,8 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -29,10 +29,14 @@ public abstract class BaseSeleniumTest {
 
   @BeforeAll
   public static void setupClass() {
-    WebDriverManager.firefoxdriver().setup();
-    FirefoxOptions options = new FirefoxOptions();
+    WebDriverManager.chromedriver().setup();
+    ChromeOptions options = new ChromeOptions();
     options.addArguments("--headless");
-    driver = new FirefoxDriver(options);
+    options.addArguments("--disable-gpu");
+    options.addArguments("--window-size=1920,1080");
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
+    driver = new ChromeDriver(options);
   }
 
   @AfterAll

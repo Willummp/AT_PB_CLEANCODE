@@ -23,10 +23,8 @@ Antes de executar, certifique-se de que seu ambiente possui:
 
 1.  **Java JDK 17** ou superior.
 2.  **Apache Maven** (3.8+).
-3.  **Navegadores Instalados** (para testes E2E):
-    *   **Google Chrome** (Necessário para TP5 e AT).
-    *   **Mozilla Firefox** (Necessário para TP2).
-    *   *Nota: Os drivers (chromedriver/geckodriver) são baixados automaticamente, mas os navegadores precisam estar instalados no S.O.*
+3.  **Google Chrome** (Necessário para TP2, TP5 e AT).
+    *   *Nota: Os drivers (chromedriver) são baixados automaticamente.*
 
 ---
 
@@ -96,7 +94,7 @@ mvn test
 
 ---
 
-## � Relatórios de Cobertura (JaCoCo)
+##  Relatórios de Cobertura (JaCoCo)
 
 O projeto utiliza o plugin **JaCoCo** para garantir a qualidade do código através da análise de cobertura de testes.
 
@@ -121,7 +119,7 @@ Após executar os testes (`mvn test` ou `mvn verify`), um relatório HTML detalh
 
 ---
 
-## �📂 Localização dos PDFs
+## 📂 Localização dos PDFs
 
 Os documentos PDF com os relatórios e evidências de cada entrega estão localizados nas seguintes pastas:
 
@@ -137,10 +135,9 @@ Os documentos PDF com os relatórios e evidências de cada entrega estão locali
 
 Os projetos utilizam **Selenium WebDriver** para testes de interface. O gerenciamento de drivers é feito automaticamente via `WebDriverManager`.
 
-*   **TP2:** Configurado padrão para **Firefox** (`FirefoxDriver`).
-*   **TP5/AT:** Configurado padrão para **Chrome** (`ChromeDriver`) em modo **Headless** (para compatibilidade com CI/CD).
+*   **TP2/TP5/AT:** Configurado padrão para **Chrome** (`ChromeDriver`) em modo **Headless** (para compatibilidade com CI/CD).
 
-Se desejar rodar em ambiente local visual (sem headless) ou trocar de navegador no TP2, consulte a classe `BaseSeleniumTest` ou `CadastroEventoE2ETest` no respectivo projeto.
+Se desejar rodar em ambiente local visual (sem headless), consulte a classe `BaseSeleniumTest` ou `CadastroEventoE2ETest` no respectivo projeto.
 
 ---
 
