@@ -42,11 +42,16 @@ import static org.mockito.Mockito.*;
 @MockitoSettings(strictness = Strictness.LENIENT) // <--- A SOLUÇÃO MÁGICA: Permite stubs não usados
 class CoberturaTotalTest {
 
-    @Mock EventoRepository eventoRepository;
-    @Mock UsuarioRepository usuarioRepository;
-    @Mock BindingResult bindingResult;
-    @Mock HttpServletRequest request;
-    @Mock MethodArgumentNotValidException methodArgumentNotValidException;
+    @Mock
+    EventoRepository eventoRepository;
+    @Mock
+    UsuarioRepository usuarioRepository;
+    @Mock
+    BindingResult bindingResult;
+    @Mock
+    HttpServletRequest request;
+    @Mock
+    MethodArgumentNotValidException methodArgumentNotValidException;
 
     EventoService eventoService;
     UsuarioService usuarioService;
@@ -67,10 +72,10 @@ class CoberturaTotalTest {
     void testEventoController_FluxoCompleto() {
         Model model = new ConcurrentModel();
         RedirectAttributes redirect = new RedirectAttributesModelMap();
-        
+
         Usuario usuarioMock = new Usuario("User Teste", "user@teste.com");
         usuarioMock.setId(1L);
-        
+
         Evento eventoMock = new Evento("Evento Teste", "Descricao");
         eventoMock.setId(10L);
         eventoMock.setUsuario(usuarioMock);
@@ -79,7 +84,7 @@ class CoberturaTotalTest {
         when(eventoRepository.findAll()).thenReturn(List.of(eventoMock));
         when(usuarioRepository.findAll()).thenReturn(List.of(usuarioMock));
         when(eventoRepository.findById(10L)).thenReturn(Optional.of(eventoMock));
-        
+
         // Testar LISTAR
         String viewListar = eventoController.listarEventos(model);
         assertEquals("lista-eventos", viewListar);
@@ -103,7 +108,7 @@ class CoberturaTotalTest {
         Model model = new ConcurrentModel();
         RedirectAttributes redirect = new RedirectAttributesModelMap();
         EventoDTO dto = new EventoDTO("Nome", "Desc", 1L);
-        
+
         // Cenário 1: Erro de Validação
         when(bindingResult.hasErrors()).thenReturn(true);
         String viewErro = eventoController.salvarEvento(dto, bindingResult, model, redirect);
@@ -111,16 +116,17 @@ class CoberturaTotalTest {
 
         // Cenário 2: Sucesso
         when(bindingResult.hasErrors()).thenReturn(false);
-        Usuario u = new Usuario(); u.setId(1L);
+        Usuario u = new Usuario();
+        u.setId(1L);
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(u));
         when(eventoRepository.save(any())).thenReturn(new Evento());
-        
+
         String viewSucesso = eventoController.salvarEvento(dto, bindingResult, model, redirect);
         assertEquals("redirect:/eventos", viewSucesso);
 
         // Cenário 3: Exceção de Negócio
-        when(eventoRepository.findByNome("Nome")).thenReturn(Optional.of(new Evento())); 
-        
+        when(eventoRepository.findByNome("Nome")).thenReturn(Optional.of(new Evento()));
+
         String viewException = eventoController.salvarEvento(dto, bindingResult, model, redirect);
         assertEquals("form-evento", viewException);
     }
@@ -139,9 +145,11 @@ class CoberturaTotalTest {
 
         // Cenário 2: Sucesso
         when(bindingResult.hasErrors()).thenReturn(false);
-        Evento eventoExistente = new Evento(); eventoExistente.setId(idEvento);
-        Usuario u = new Usuario(); u.setId(1L);
-        
+        Evento eventoExistente = new Evento();
+        eventoExistente.setId(idEvento);
+        Usuario u = new Usuario();
+        u.setId(1L);
+
         when(eventoRepository.findById(idEvento)).thenReturn(Optional.of(eventoExistente));
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(u));
         when(eventoRepository.save(any())).thenReturn(eventoExistente);
@@ -150,9 +158,10 @@ class CoberturaTotalTest {
         assertEquals("redirect:/eventos", viewSucesso);
 
         // Cenário 3: Exceção de Negócio
-        Evento outroEvento = new Evento(); outroEvento.setId(99L);
+        Evento outroEvento = new Evento();
+        outroEvento.setId(99L);
         when(eventoRepository.findByNome("Nome")).thenReturn(Optional.of(outroEvento));
-        
+
         String viewException = eventoController.atualizarEvento(idEvento, dto, bindingResult, model, redirect);
         assertEquals("form-evento", viewException);
     }
@@ -164,7 +173,8 @@ class CoberturaTotalTest {
         Model model = new ConcurrentModel();
         RedirectAttributes redirect = new RedirectAttributesModelMap();
         UsuarioDTO dto = new UsuarioDTO("User", "email@email.com");
-        Usuario u = new Usuario(); u.setId(1L);
+        Usuario u = new Usuario();
+        u.setId(1L);
 
         when(usuarioRepository.findAll()).thenReturn(List.of(u));
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(u));
@@ -177,7 +187,7 @@ class CoberturaTotalTest {
 
         when(bindingResult.hasErrors()).thenReturn(false);
         usuarioController.salvarUsuario(dto, bindingResult, model, redirect);
-        
+
         when(bindingResult.hasErrors()).thenReturn(true);
         usuarioController.salvarUsuario(dto, bindingResult, model, redirect);
     }
@@ -191,22 +201,50 @@ class CoberturaTotalTest {
 
         when(methodArgumentNotValidException.getBindingResult()).thenReturn(bindingResult);
         when(bindingResult.getFieldErrors()).thenReturn(List.of(new FieldError("obj", "campo", "msg")));
-        
-        ResponseEntity<ErroDTO> responseValid = exceptionHandler.handleValidationErrors(methodArgumentNotValidException, request);
+
+        ResponseEntity<ErroDTO> responseValid = exceptionHandler.handleValidationErrors(methodArgumentNotValidException,
+                request);
         assertEquals(400, responseValid.getStatusCode().value());
     }
-    
+
     @Test
     void testServices_Calls() {
         // Garante cobertura dos métodos transacionais dos services
-        Usuario u = new Usuario(); u.setId(1L);
+        Usuario u = new Usuario();
+        u.setId(1L);
         when(usuarioRepository.findById(1L)).thenReturn(Optional.of(u));
         when(usuarioRepository.findById(99L)).thenReturn(Optional.empty());
-        
+
         usuarioService.listarTodos();
         assertThrows(RecursoNaoEncontradoException.class, () -> usuarioService.buscarPorId(99L));
-        
+
         when(eventoRepository.existsById(99L)).thenReturn(false);
         assertThrows(RecursoNaoEncontradoException.class, () -> eventoService.deletarEvento(99L));
+    }
+
+    @Test
+    void testAtualizarEvento_MesmoNome_MesmoId() {
+        // Cenario: Atualizar evento mantendo o mesmo nome (não deve lançar erro de
+        // duplicidade)
+        Usuario usuario = new Usuario("User", "email");
+        usuario.setId(1L);
+        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuario));
+
+        Evento eventoBanco = new Evento("Nome Original", "Desc");
+        eventoBanco.setId(10L);
+        eventoBanco.setUsuario(usuario);
+        when(eventoRepository.findById(10L)).thenReturn(Optional.of(eventoBanco));
+
+        // A busca por nome retorna o PROPRIO evento que estamos atualizando (ID 10)
+        when(eventoRepository.findByNome("Nome Original")).thenReturn(Optional.of(eventoBanco));
+        when(eventoRepository.save(any())).thenReturn(eventoBanco);
+
+        Evento eventoAtualizado = new Evento("Nome Original", "Nova Descricao");
+
+        // Executa
+        assertDoesNotThrow(() -> eventoService.atualizarEvento(10L, eventoAtualizado, 1L));
+
+        // Verifica se salvou
+        verify(eventoRepository, times(1)).save(any());
     }
 }
