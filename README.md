@@ -21,6 +21,17 @@
 
 Para auditar ou testar os projetos, utilize os seguintes comandos no terminal (certifique-se de ter o Maven e JDK 17+ instalados):
 
+### 🚀 Auditoria Completa Automática
+Para rodar todos os testes de todos os projetos em sequência, execute o script na raiz:
+```bash
+bash run_all_tests.sh
+```
+> Este script valida **TP1, TP2, TP3, TP4, TP5 e AT** de uma só vez.
+
+---
+
+### Execução Individual por Projeto
+
 ### TP1 (Testes Unitários)
 ```bash
 cd TP1/crud-java-tp1
