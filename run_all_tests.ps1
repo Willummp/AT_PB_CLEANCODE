@@ -14,22 +14,32 @@ function Run-Test {
     param (
         [string]$ProjectName,
         [string]$Directory,
-        [string]$Command
+        [string]$CommandArgs
     )
 
     Write-Host "`n----------------------------------------"
     Write-Host "Testing $ProjectName..."
     Write-Host "Directory: $Directory"
-    Write-Host "Command: $Command"
     Write-Host "----------------------------------------"
 
     Push-Location $Directory
     try {
-        # Execute the command. 
-        # Using cmd /c to ensure maven (mvn.cmd) is found correctly in path if it's a batch file.
-        # But direct invocation often works if mvn is in path. 
-        # Safer: Invoke-Expression
-        Invoke-Expression $Command
+        # Check for Maven Wrapper (mvnw.cmd for Windows)
+        if (Test-Path ".\mvnw.cmd") {
+            Write-Host "ℹ️  Using Maven Wrapper (.\mvnw.cmd)"
+            $MavenCmd = ".\mvnw.cmd"
+        }
+        else {
+            Write-Host "ℹ️  Using Global Maven (mvn)"
+            $MavenCmd = "mvn"
+        }
+
+        # Build full command string
+        $FullCommand = "$MavenCmd $CommandArgs"
+        Write-Host "Command: $FullCommand"
+
+        # Execute
+        Invoke-Expression $FullCommand
         
         if ($LASTEXITCODE -ne 0) {
             throw "Command failed with exit code $LASTEXITCODE"
@@ -50,23 +60,22 @@ function Run-Test {
 $BaseDir = Get-Location
 
 # TP1
-Run-Test -ProjectName "TP1 (Unit Tests)" -Directory "$BaseDir\TP1\crud-java-tp1" -Command "mvn clean test"
+Run-Test -ProjectName "TP1 (Unit Tests)" -Directory "$BaseDir\TP1\crud-java-tp1" -CommandArgs "clean test"
 
 # TP2
-Run-Test -ProjectName "TP2 (E2E Tests)" -Directory "$BaseDir\TP2\tp2pb" -Command "mvn clean test"
+Run-Test -ProjectName "TP2 (E2E Tests)" -Directory "$BaseDir\TP2\tp2pb" -CommandArgs "clean test"
 
 # TP3
-Run-Test -ProjectName "TP3 (API/Fuzz Tests)" -Directory "$BaseDir\TP3\TP3_CODIGO\com-cliente-projeto" -Command "mvn clean test"
+Run-Test -ProjectName "TP3 (API/Fuzz Tests)" -Directory "$BaseDir\TP3\TP3_CODIGO\com-cliente-projeto" -CommandArgs "clean test"
 
 # TP4
-Run-Test -ProjectName "TP4 (Integration Tests)" -Directory "$BaseDir\TP4\TP4\com-cliente-projeto" -Command "mvn clean test"
+Run-Test -ProjectName "TP4 (Integration Tests)" -Directory "$BaseDir\TP4\TP4\com-cliente-projeto" -CommandArgs "clean test"
 
 # TP5
-# Note: Quotes around the argument to prevent PowerShell parsing issues with '!'
-Run-Test -ProjectName "TP5 (Coverage Verification)" -Directory "$BaseDir\TP5\com-cliente-projeto" -Command "mvn clean verify '-Dtest=!CadastroEventoE2ETest'"
+Run-Test -ProjectName "TP5 (Coverage Verification)" -Directory "$BaseDir\TP5\com-cliente-projeto" -CommandArgs "clean verify '-Dtest=!CadastroEventoE2ETest'"
 
 # AT
-Run-Test -ProjectName "AT (Assessment)" -Directory "$BaseDir\AT\com-cliente-projeto" -Command "mvn clean test"
+Run-Test -ProjectName "AT (Assessment)" -Directory "$BaseDir\AT\com-cliente-projeto" -CommandArgs "clean test"
 
 Write-Host "`n========================================"
 Write-Host "🎉 ALL PROJECTS PASSED LOCAL CHECKS!"

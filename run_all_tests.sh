@@ -17,16 +17,29 @@ echo "========================================"
 run_test() {
     PROJECT=$1
     DIR=$2
-    CMD=$3
+    CMD_ARGS=$3
     
     echo -e "\n----------------------------------------"
     echo "Testing $PROJECT..."
     echo "Directory: $DIR"
-    echo "Command: $CMD"
     echo "----------------------------------------"
     
     cd "$DIR"
-    if eval "$CMD"; then
+    
+    # Check for Maven Wrapper
+    if [ -f "./mvnw" ]; then
+        echo "ℹ️  Using Maven Wrapper (./mvnw)"
+        chmod +x ./mvnw
+        MAVEN_CMD="./mvnw"
+    else
+        echo "ℹ️  Using Global Maven (mvn)"
+        MAVEN_CMD="mvn"
+    fi
+    
+    FULL_CMD="$MAVEN_CMD $CMD_ARGS"
+    echo "Command: $FULL_CMD"
+    
+    if eval "$FULL_CMD"; then
         echo -e "\n✅ $PROJECT: SUCCESS"
     else
         echo -e "\n❌ $PROJECT: FAILED"
@@ -39,23 +52,22 @@ run_test() {
 BASE_DIR="/home/willump/Downloads/lucas_ferreira_pb/lucas_ferreira_pb/AT_Entrega"
 
 # TP1
-run_test "TP1 (Unit Tests)" "$BASE_DIR/TP1/crud-java-tp1" "mvn clean test"
+run_test "TP1 (Unit Tests)" "$BASE_DIR/TP1/crud-java-tp1" "clean test"
 
-# TP2 - Running default tests (including E2E if drivers are present, checking recent fix)
-# Since we fixed the race condition, we can try running it normally.
-run_test "TP2 (E2E Tests)" "$BASE_DIR/TP2/tp2pb" "mvn clean test"
+# TP2
+run_test "TP2 (E2E Tests)" "$BASE_DIR/TP2/tp2pb" "clean test"
 
 # TP3
-run_test "TP3 (API/Fuzz Tests)" "$BASE_DIR/TP3/TP3_CODIGO/com-cliente-projeto" "mvn clean test"
+run_test "TP3 (API/Fuzz Tests)" "$BASE_DIR/TP3/TP3_CODIGO/com-cliente-projeto" "clean test"
 
 # TP4
-run_test "TP4 (Integration Tests)" "$BASE_DIR/TP4/TP4/com-cliente-projeto" "mvn clean test"
+run_test "TP4 (Integration Tests)" "$BASE_DIR/TP4/TP4/com-cliente-projeto" "clean test"
 
-# TP5 - full verification including coverage check (avoiding E2E headless issues if local chrome differs, but trying verifies coverage)
-run_test "TP5 (Coverage Verification)" "$BASE_DIR/TP5/com-cliente-projeto" "mvn clean verify -Dtest=!CadastroEventoE2ETest"
+# TP5
+run_test "TP5 (Coverage Verification)" "$BASE_DIR/TP5/com-cliente-projeto" "clean verify -Dtest=!CadastroEventoE2ETest"
 
 # AT
-run_test "AT (Assessment)" "$BASE_DIR/AT/com-cliente-projeto" "mvn clean test"
+run_test "AT (Assessment)" "$BASE_DIR/AT/com-cliente-projeto" "clean test"
 
 echo -e "\n========================================"
 echo "🎉 ALL PROJECTS PASSED LOCAL CHECKS!"
