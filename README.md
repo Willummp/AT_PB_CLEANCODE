@@ -43,10 +43,14 @@ Execute o script bash:
 ```
 
 **Windows (PowerShell):**
-Execute o script:
-```powershell
-.\run_all_tests.ps1
-```
+1.  **Habilite a execução de scripts** (caso nunca tenha feito):
+    ```powershell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+    ```
+2.  Execute o script:
+    ```powershell
+    .\run_all_tests.ps1
+    ```
 > Ambos os scripts validam **TP1, TP2, TP3, TP4, TP5 e AT** de uma só vez e geram logs automáticos.
 
 ---
