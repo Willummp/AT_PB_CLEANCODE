@@ -8,17 +8,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+// import org.junit.jupiter.api.Disabled; // Removido para funcionar no CI
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CadastroEventoE2ETest {
 
@@ -50,8 +49,13 @@ public class CadastroEventoE2ETest {
             this.usuarioTesteId = usuarioService.listarTodos().get(0).getId();
         }
 
-        // Configuração do Selenium
+        // Configuração do Selenium com Headless para CI/CD
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
 
         baseUrl = "http://localhost:" + port;
@@ -79,19 +83,18 @@ public class CadastroEventoE2ETest {
         // Verificação
         String mensagemErroNomeVazio = formularioPage.getMensagemDeErroVisivel();
 
-        
         // 1. Cria o primeiro evento (válido)
         formularioPage.preencherFormulario("Evento Duplicado E2E", "Desc 1", this.usuarioTesteId);
         formularioPage.submeter();
-        
+
         // 2. Tenta criar o segundo evento (inválido)
         driver.get(baseUrl + "/eventos/novo");
         formularioPage.preencherFormulario("Evento Duplicado E2E", "Desc 2", this.usuarioTesteId);
         formularioPage.submeter();
-        
+
         // 3. Verificação (espera o erro de negócio)
         String mensagemErroDuplicado = formularioPage.getMensagemDeErroVisivel();
-        
+
         assertTrue(mensagemErroDuplicado.contains("já está em uso por outro evento"),
                 "A mensagem de erro de nome duplicado não foi encontrada.");
     }
