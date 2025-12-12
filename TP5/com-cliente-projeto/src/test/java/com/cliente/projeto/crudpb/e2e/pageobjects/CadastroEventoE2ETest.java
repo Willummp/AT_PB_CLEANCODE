@@ -12,6 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -104,6 +110,10 @@ public class CadastroEventoE2ETest {
         driver.get(baseUrl + "/eventos/novo");
         formularioPage.preencherFormulario("Evento Duplicado E2E", "Desc 1", this.usuarioTesteId);
         formularioPage.submeter();
+
+        // Espera a navegação acontecer para garantir que o primeiro foi salvo
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.urlContains("/eventos"));
 
         // 2. Tenta criar o segundo evento com mesmo nome
         driver.get(baseUrl + "/eventos/novo");
