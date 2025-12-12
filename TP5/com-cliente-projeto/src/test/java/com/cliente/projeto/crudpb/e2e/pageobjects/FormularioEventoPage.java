@@ -32,8 +32,8 @@ public class FormularioEventoPage {
     }
 
     public void preencherFormulario(String nome, String descricao, Long usuarioId) {
-        // Nome
-        WebElement inputNome = driver.findElement(campoNome);
+        // Nome - Espera estar visível
+        WebElement inputNome = wait.until(ExpectedConditions.visibilityOfElementLocated(campoNome));
         inputNome.clear();
         inputNome.sendKeys(nome);
 
@@ -44,7 +44,8 @@ public class FormularioEventoPage {
 
         // Se um usuarioId for fornecido, selecione-o no dropdown
         if (usuarioId != null) {
-            Select dropdownUsuario = new Select(driver.findElement(selectUsuario));
+            WebElement selectEl = wait.until(ExpectedConditions.visibilityOfElementLocated(selectUsuario));
+            Select dropdownUsuario = new Select(selectEl);
             dropdownUsuario.selectByValue(usuarioId.toString());
         }
     }
