@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select; // Importado
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -17,50 +17,33 @@ public class FormularioEventoPage {
     // Seletores dos elementos
     private By campoNome = By.id("nome");
     private By campoDescricao = By.id("descricao");
-    private By botaoSalvar = By.id("btn-salvar"); // (O seu HTML não tem este ID, vamos corrigir)
 
-    /*
-     * ==================== REATORAÇÃO (Req 4) ====================
-     * Adicionando o seletor para o novo dropdown de usuário.
-     * ============================================================
-     */
+    // Seletores para o novo campo de usuário
     private By selectUsuario = By.id("usuarioId");
 
-    /*
-     * ==================== CORREÇÃO (Bug TP3) ====================
-     * O seu PageObject procurava por "validation-errors", mas
-     * o HTML de refatoração que fiz (e o seu teste de integração)
-     * mostra os erros de DTO (como "O nome é obrigatório.")
-     * embaixo de cada campo, com a classe 'text-danger'.
-     * 
-     * Para o teste E2E, vamos padronizar e procurar pela
-     * mensagem de erro de *regra de negócio* (ex: nome duplicado),
-     * que aparece no 'alert-danger'.
-     * ============================================================
-     */
-    private By containerMensagemErro = By.className("alert-danger"); // Buscando pelo Alerta de Erro
+    // Buscando por qualquer erro (Global .alert-danger OU Campo .text-danger)
+    // Isso resolve o problema do teste falhar esperando erro global quando é erro
+    // de campo
+    private By containerMensagemErro = By.cssSelector(".alert-danger, .text-danger");
 
     public FormularioEventoPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    /*
-     * ==================== REATORAÇÃO (Req 4) ====================
-     * O método de preenchimento foi atualizado para
-     * incluir o preenchimento do novo campo de usuário.
-     * ============================================================
-     */
     public void preencherFormulario(String nome, String descricao, Long usuarioId) {
-        driver.findElement(campoNome).clear();
-        driver.findElement(campoNome).sendKeys(nome);
+        // Nome
+        WebElement inputNome = driver.findElement(campoNome);
+        inputNome.clear();
+        inputNome.sendKeys(nome);
 
-        driver.findElement(campoDescricao).clear();
-        driver.findElement(campoDescricao).sendKeys(descricao);
+        // Descrição
+        WebElement inputDescricao = driver.findElement(campoDescricao);
+        inputDescricao.clear();
+        inputDescricao.sendKeys(descricao);
 
         // Se um usuarioId for fornecido, selecione-o no dropdown
         if (usuarioId != null) {
-            // Selenium usa a classe 'Select' para interagir com dropdowns
             Select dropdownUsuario = new Select(driver.findElement(selectUsuario));
             dropdownUsuario.selectByValue(usuarioId.toString());
         }
@@ -72,7 +55,7 @@ public class FormularioEventoPage {
     }
 
     public String getMensagemDeErroVisivel() {
-        // Espera o container de erro (alert-danger) ficar visível
+        // Espera qualquer erro (global ou de campo) ficar visível
         WebElement erroEl = wait.until(ExpectedConditions.visibilityOfElementLocated(containerMensagemErro));
         return erroEl.getText();
     }
