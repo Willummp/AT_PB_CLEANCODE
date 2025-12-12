@@ -35,11 +35,19 @@ Antes de executar, certifique-se de que seu ambiente possui:
 Para auditar ou testar os projetos, utilize os seguintes comandos no terminal:
 
 ### 🚀 Auditoria Completa Automática
-Para rodar todos os testes de todos os projetos em sequência, execute o script na raiz:
+
+**Linux / Mac:**
+Execute o script bash:
 ```bash
-bash run_all_tests.sh
+./run_all_tests.sh
 ```
-> Este script valida **TP1, TP2, TP3, TP4, TP5 e AT** de uma só vez.
+
+**Windows (PowerShell):**
+Execute o script:
+```powershell
+.\run_all_tests.ps1
+```
+> Ambos os scripts validam **TP1, TP2, TP3, TP4, TP5 e AT** de uma só vez e geram logs automáticos.
 
 ---
 
