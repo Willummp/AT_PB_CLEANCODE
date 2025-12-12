@@ -60,7 +60,32 @@ mvn test
 
 ---
 
-## 📂 Localização dos PDFs
+## � Relatórios de Cobertura (JaCoCo)
+
+O projeto utiliza o plugin **JaCoCo** para garantir a qualidade do código através da análise de cobertura de testes.
+
+### 📋 Requisitos e Configuração
+As regras de cobertura estão definidas no arquivo `pom.xml` de cada projeto, dentro da tag `<configuration>` do plugin. O build **falhará** automaticamente se os limites não forem atingidos.
+
+| Projeto | Mínimo (Instruções) | Mínimo (Branches) | Status Atual |
+|:-------:|:-------------------:|:-----------------:|:------------:|
+| **TP1** | 80% | - | ✅ Aprovado |
+| **TP2** | 80% | 70% | ✅ Aprovado |
+| **TP4** | 85% | - | ✅ Aprovado |
+| **TP5** | **90%** | **90%** | ✅ Aprovado |
+
+### 🔍 Como Verificar
+Após executar os testes (`mvn test` ou `mvn verify`), um relatório HTML detalhado é gerado.
+
+**Localização do Relatório:**
+```
+<PASTA_DO_PROJETO>/target/site/jacoco/index.html
+```
+> Basta abrir este arquivo no seu navegador para visualizar a cobertura por pacote, classe e método.
+
+---
+
+## �📂 Localização dos PDFs
 
 Os documentos PDF com os relatórios e evidências de cada entrega estão localizados nas seguintes pastas:
 
