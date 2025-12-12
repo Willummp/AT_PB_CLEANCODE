@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/_header :: header-css}"></head>
+
+<body>
+    <nav th:replace="~{fragments/_header :: navbar}"></nav>
+
+    <main class="container">
+        <h1 th:text="${pageTitle}">Formulário de Evento</h1>
+
+        <form th:action="${eventoId != null} ? @{/eventos/{id}(id=${eventoId})} : @{/eventos}" th:object="${eventoDTO}"
+            method="post" class="needs-validation" novalidate>
+
+            <div th:if="${mensagemErro}" class="alert alert-danger" id="business-error">
+                <span th:text="${mensagemErro}"></span>
+            </div>
+
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" id="validation-errors">
+                <strong>Por favor, corrija os seguintes erros:</strong>
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome *</label>
+                <input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorclass="is-invalid"
+                    required>
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea class="form-control" id="descricao" rows="3" th:field="*{descricao}"
+                    th:errorclass="is-invalid"></textarea>
+                <div th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="invalid-feedback"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-salvar">Salvar</button>
+            <a th:href="@{/eventos}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </main>
+
+    <div th:replace="~{fragments/_footer :: footer-scripts}"></div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+Teste de Performance 2 – Desenvolvimento de Interface Web e Testes Automatizados com Selenium
+Contextualização:
+
+O cliente solicitou uma nova etapa para o sistema já em desenvolvimento, agora com a adição de uma interface web. A interface permitirá que os usuários realizem operações diretamente no navegador, facilitando a interação com o sistema e promovendo uma experiência mais intuitiva.
+
+Como engenheiro de software, você foi encarregado de projetar e implementar essa interface, além de desenvolver uma suíte de testes automatizados utilizando Selenium WebDriver para validar o comportamento da aplicação. O objetivo é garantir que todas as operações do sistema sejam testadas de forma robusta, cobrindo diferentes cenários e navegadores.
+
+Esse trabalho não se limita apenas à construção da interface, mas também à aplicação de boas práticas de organização do código de teste, reutilização de componentes e desenvolvimento de um código coeso e flexível.
+Artefatos e Requisitos para Entrega:
+1 - Desenvolvimento da Interface Web:
+
+    Implementar uma interface web que permita a execução das operações CRUD do sistema existente.
+    A interface deve ser responsiva e intuitiva, permitindo a interação com campos de formulário, botões e tabelas de listagem.
+    Garantir a navegação entre páginas, utilizando rotas claras e bem definidas.
+
+2 - Automação de Testes com Selenium:
+
+    Configurar o ambiente Java para utilizar o Selenium WebDriver e automatizar a interação com a interface desenvolvida.
+    Criar testes automatizados para validar o fluxo completo de cada operação (cadastro, listagem, edição e exclusão).
+    Implementar testes que interajam com componentes da interface, como campos de formulário, tabelas, botões e alertas de confirmação.
+    Desenvolver testes parametrizados para validar diferentes cenários e entradas de dados.
+
+3 - Aplicação de Padrões e Organização do Código de Teste:
+
+    Utilizar o padrão Page Object Model (POM) para organizar o código de teste, encapsulando a lógica de interação com cada página da aplicação em classes separadas.
+    Integrar o Selenium com JUnit ou TestNG para estruturar e executar os testes.
+
+4 - Cobertura de Código e Análise Estrutural:
+
+    Utilizar ferramentas de cobertura para medir a eficácia dos testes e identificar áreas não testadas.
+    Garantir a execução de testes negativos, simulando falhas, entradas inválidas e comportamentos inesperados na interface web.
+
+5 - Qualidade de Código e Boas Práticas:
+
+    Escrever código que seja organizado, legível e bem estruturado, garantindo proximidade lógica entre variáveis, funções e classes.
+    Implementar comentários claros e objetivos, sem redundâncias ou informações desnecessárias.
+    Adotar boas práticas de nomeação para variáveis, funções e classes, promovendo a compreensão intuitiva do código.
+
+6 - Robustez e Tratamento de Erros:
+
+    Promover a robustez do código com tratamento explícito de erros e falhas visíveis.
+    Implementar a sinalização de erros através do uso de exceções, prevenindo estados inválidos e garantindo consistência no fluxo de execução.
+    Desenvolver o sistema com tipos de dados específicos para garantir clareza e facilitar a manutenção.
+
+Requisitos Não Funcionais:
+
+    O código deve seguir os princípios de Clean Code e boas práticas de desenvolvimento.
+    A cobertura de testes deve ser de, no mínimo, 80%.
+    Tratamento de erros claros e consistentes, tanto na interface web quanto nos testes automatizados.
+    O sistema deve ser projetado para facilitar a manutenção e evolução, promovendo flexibilidade e escalabilidade.

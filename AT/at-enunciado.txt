@@ -1,0 +1,34 @@
+Requisitos e Entregáveis:
+1 - Refinamento e Finalização do Código
+
+    Aplicação de princípios de Clean Code, garantindo código modular e de fácil manutenção.
+    Implementação de imutabilidade e separação clara entre operações de leitura e escrita.
+    Refatoração final para eliminar redundâncias, melhorar a organização das classes e otimizar processos.
+
+2 - Implementação e Automação Completa do CI/CD
+
+    Workflows completos no GitHub Actions, incluindo:
+        Build do projeto com Gradle.
+        Execução de testes automatizados (unidade, integração, pós-deploy).
+        Análises de segurança para detectar vulnerabilidades no código.
+        Deploy automático para múltiplos ambientes (desenvolvimento, teste e produção).
+    Gerenciamento seguro de variáveis de ambiente e proteção de credenciais.
+
+3 - Testes Pós-Deploy e Validação em Produção
+
+    Implementação de testes pós-deploy com Selenium, validando a integridade do sistema em produção.
+    Simulação de cenários reais, verificando o funcionamento da interface web e backend.
+    Monitoramento contínuo para identificação de falhas e melhoria da estabilidade do sistema.
+
+4 - Monitoramento e Logs de Workflow
+
+    Criação de logs personalizados nos workflows, facilitando depuração e rastreabilidade.
+    Badges de status exibindo informações sobre qualidade do código e estado do pipeline.
+    Configuração de alertas e documentação detalhada para análise futura.
+
+5 - Documentação da Entrega Final
+
+    Descrição detalhada da arquitetura do sistema.
+    Explicação sobre os workflows do GitHub Actions e o pipeline de deploy.
+    Guia de execução do sistema, incluindo instruções para rodar testes e interpretar resultados.
+    Apresentação das estratégias de validação pós-deploy e segurança implementada.

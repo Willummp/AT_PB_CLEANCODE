@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/_header :: header-css}"></head>
+<body>
+<nav th:replace="~{fragments/_header :: navbar}"></nav>
+
+<main class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Eventos</h1>
+        <a th:href="@{/eventos/novo}" class="btn btn-primary">Novo Evento</a>
+    </div>
+
+    <div th:if="${mensagemSucesso}" class="alert alert-success alert-dismissible fade show" role="alert" id="msg-sucesso">
+        <span th:text="${mensagemSucesso}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="evento : ${eventos}">
+            <td th:text="${evento.id}">1</td>
+            <td th:text="${evento.nome}">Nome do Evento</td>
+            <td th:text="${evento.descricao}">Descrição do Evento</td>
+            <td>
+                <a th:href="@{/eventos/editar/{id}(id=${evento.id})}" class="btn btn-sm btn-warning">Editar</a>
+
+                <a th:href="@{/eventos/deletar/{id}(id=${evento.id})}"
+                   class="btn btn-sm btn-danger btn-delete"
+                   th:id="'btn-delete-' + ${evento.id}">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(eventos)}">
+            <td colspan="4" class="text-center">Nenhum evento cadastrado.</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:replace="~{fragments/_footer :: footer-scripts}"></div>
+</body>
+</html>

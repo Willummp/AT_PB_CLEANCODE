@@ -1,0 +1,55 @@
+Teste de Performance 1 – Desenvolvimento de Sistema CRUD em Java
+Contextualização:
+
+    Um cliente está buscando desenvolver um novo sistema que desempenhará um papel fundamental em suas operações. Esse sistema será responsável por gerenciar informações críticas, garantindo a confiabilidade e a eficiência dos processos internos.
+
+    Como engenheiro de software, você foi designado para iniciar o desenvolvimento do sistema a partir de uma especificação fornecida pelo Product Owner (PO). Sua missão é implementar um sistema CRUD (Create, Read, Update, Delete) que atenda aos requisitos estabelecidos, aplicando princípios sólidos de engenharia de software, testes automatizados e garantindo a qualidade do código.
+
+Além de entregar as funcionalidades esperadas, o projeto exige atenção especial à clareza e robustez do código. Cada etapa deve ser documentada e acompanhada de testes que validem o comportamento do sistema, cobrindo diferentes cenários e limites. 
+
+A construção do sistema deve refletir as melhores práticas de desenvolvimento, priorizando organização, legibilidade e manutenção futura.
+Requisitos Não Funcionais:
+
+    O sistema deve ser desenvolvido em Java.
+    A interface não é Web (podendo ser apenas por linha de comando)
+    O código deve seguir princípios de Clean Code.
+    Cobertura de testes mínima de 80%.
+    Tratamento de erros consistente e claro com uso de exceções.
+    Organização lógica do código, facilitando manutenção e escalabilidade.
+
+Artefatos e requisitos para entrega:
+
+1 - Especificação e Teste do Sistema:
+
+    Escreva especificações claras que detalhem o comportamento esperado do software.
+    Crie casos de teste a partir das especificações utilizando técnicas como partições equivalentes e análise de limites.
+    Utilize Jqwik para desenvolver testes baseados em propriedades e geradores de dados, garantindo a cobertura de cenários diversos, inclusive limites e valores extremos.
+
+2 - Execução de Testes e Validação:
+
+    Desenvolva e execute testes em sistemas CRUD para validar todas as operações do ciclo de vida de um registro.
+    Construa tabelas de decisão e gráficos de causa-efeito que mapeiem combinações de variáveis e guiem a criação de testes eficazes.
+    Verifique a robustez do sistema com testes negativos, simulando falhas e comportamentos inesperados.
+
+3 - Qualidade de Código e Boas Práticas:
+
+    Escreva um código que seja organizado, legível e bem estruturado, garantindo proximidade lógica entre variáveis, funções e classes.
+    Implemente comentários claros e objetivos, sem redundâncias ou informações desnecessárias.
+    Adote boas práticas de nomeação para variáveis, funções e classes, promovendo a compreensão intuitiva do código.
+
+4 - Robustez e Tratamento de Erros:
+
+    Promova a robustez do código com tratamento explícito de erros e falhas visíveis.
+    Implemente a sinalização de erros através do uso de exceções, prevenindo estados inválidos e garantindo consistência no fluxo de execução.
+    Desenvolva o sistema com tipos de dados específicos para garantir clareza e facilitar a manutenção.
+
+5 - Integridade e Clareza do Código:
+
+    Evite valores mágicos e utilize o padrão de objeto nulo quando necessário.
+    Aplique o princípio de Command Query Separation (CQS) para a separação de funções que modificam o estado do sistema e funções que apenas consultam dados.
+    Implemente switch statements exaustivos para manipulação de enums, eliminando o uso de default para garantir que novos casos sejam tratados de forma explícita.
+    Desenvolva código promovendo imutabilidade, prevenindo efeitos colaterais indesejados e assegurando a consistência de dados.
+
+6 - Preparação para o Futuro:
+
+    Estruture o sistema com foco na manutenibilidade e evolução, garantindo que o código possa ser facilmente adaptado e expandido conforme novos requisitos surgirem.

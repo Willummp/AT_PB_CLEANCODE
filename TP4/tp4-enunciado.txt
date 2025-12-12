@@ -1,0 +1,71 @@
+Teste de Performance 4 – Integração, Refatoração e Automação com CI/CD
+Contextualização:
+
+Agora que os sistemas desenvolvidos nos TPs anteriores foram concluídos, o cliente solicitou a integração das soluções em uma única aplicação coesa. Essa integração permitirá que os sistemas interajam entre si, formando uma base sólida para atender às demandas operacionais.
+
+Entretanto, antes de integrar os sistemas, será necessário realizar uma refatoração profunda no código existente. Essa etapa é essencial para eliminar potenciais redundâncias, criar interfaces reutilizáveis e aplicar os princípios de Clean Code, garantindo que o sistema integrado seja modular, coeso e extensível. A refatoração também permitirá organizar melhor as responsabilidades entre as classes e componentes, simplificando o desenvolvimento de futuras funcionalidades.
+
+Além disso, o cliente deseja que o sistema seja preparado para integração contínua (CI) e entrega contínua (CD), utilizando GitHub Actions para automatizar tarefas de build, teste e validação.
+
+Como engenheiro de software, sua missão neste TP4 é:
+
+    Refatorar o código dos sistemas para promover qualidade e manutenção futura.
+    Integrar os dois sistemas desenvolvidos previamente, adaptando as interações entre eles de maneira clara e eficiente.
+    Configurar uma esteira de CI/CD usando GitHub Actions, automatizando processos de build, teste e validação.
+
+Este TP combina desafios técnicos e conceituais, proporcionando uma oportunidade prática de consolidar o conhecimento em refatoração, integração e automação.
+Artefatos e Requisitos para Entrega:
+1 - Refatoração e Organização do Código:
+
+    Identificar e eliminar trechos duplicados, métodos longos e classes sobrecarregadas.
+    Aplicar o Princípio da Responsabilidade Única (SRP), organizando o código em componentes coesos e de fácil manutenção.
+    Substituir valores primitivos por objetos, encapsular coleções e delegações para reduzir acoplamento.
+    Adotar práticas de imutabilidade e aplicar padrões de design que promovam estabilidade e extensibilidade.
+    Criar interfaces reutilizáveis para abstrair funcionalidades comuns entre os dois sistemas.
+    Melhorar nomes de variáveis, métodos e classes para refletir suas responsabilidades claramente.
+    Reestruturar processos complexos em etapas simples e bem definidas.
+
+2 - Integração dos Sistemas:
+
+    Conectar os dois sistemas desenvolvidos, garantindo comunicação clara e eficiente entre eles.
+    Reutilizar componentes sempre que possível, evitando duplicação de lógica.
+    Adaptar os fluxos de cadastro e listagem para que as informações de ambos os sistemas sejam integradas de forma consistente.
+    Garantir que as alterações feitas em um sistema reflitam corretamente no outro, mantendo a integridade dos dados.
+
+3 - Configuração de Workflows no GitHub Actions:
+
+    Criar workflows para:
+        Build do projeto utilizando Gradle.
+        Execução de testes automatizados para validar a funcionalidade e a cobertura do sistema.
+        Análise estática de código (opcional, mas recomendada).
+    Configurar triggers para executar os workflows automaticamente em eventos como push, pull_request e workflow_dispatch.
+    Integrar actions pré-construídas do Marketplace para otimizar o workflow (ex.: ações de configuração de Java ou Gradle).
+
+4 - Refatoração Guiada por Testes:
+
+    Utilizar os testes existentes para guiar o processo de refatoração, assegurando que o comportamento do sistema seja mantido após as alterações.
+    Criar novos testes para cobrir partes do código que não possuíam validação suficiente.
+    Realizar testes integrados que verifiquem a comunicação entre os dois sistemas.
+
+5 - Runners e Personalização:
+
+    Diferenciar entre runners hospedados pelo GitHub e auto-hospedados, optando pela melhor abordagem para o projeto.
+    Garantir que os workflows sejam executados em ambientes configurados adequadamente, incluindo a instalação de dependências e ferramentas necessárias.
+
+Entrega dos Artefatos:
+
+    Código-fonte refatorado e integrado dos sistemas desenvolvidos.
+    Workflows do GitHub Actions, incluindo arquivos YAML e configurações utilizadas.
+    Relatório de cobertura de testes e análise de código, destacando melhorias realizadas durante a refatoração.
+    Manual de execução, descrevendo:
+        Como rodar a aplicação integrada.
+        Como executar e interpretar os workflows do GitHub Actions.
+        As principais mudanças feitas durante o processo de refatoração.
+
+Requisitos Não Funcionais:
+
+    O sistema integrado deve ser desenvolvido em Java, mantendo compatibilidade com os requisitos definidos previamente.
+    O código deve seguir os princípios de Clean Code, promovendo clareza, modularidade e extensibilidade.
+    A cobertura de testes mínima deve ser de 85%, com evidências apresentadas.
+    Workflows no GitHub Actions devem ser claros e fáceis de monitorar na aba Actions do repositório.
+    Erros e mensagens de falha nos workflows devem ser compreensíveis, facilitando a depuração.

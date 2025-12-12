@@ -1,0 +1,45 @@
+Teste de Performance 3 – Desenvolvimento de Novo Sistema CRUD com Interface Web
+Contextualização:
+
+O cliente identificou a necessidade de desenvolver um novo sistema para atender a outro conjunto de demandas operacionais críticas. Esse sistema será construído do zero, incluindo tanto a lógica de backend quanto a interface web. Ele deve ser desenvolvido com foco em eficiência, modularidade e robustez, garantindo que seja compacto, eficiente e preparado para suportar falhas de forma graciosa.
+
+Como engenheiro de software, sua missão é projetar e implementar esse novo sistema CRUD (Create, Read, Update, Delete) com interface web. O sistema deve ser robusto o suficiente para lidar com cenários de falhas, oferecendo respostas claras e seguras ao usuário, mesmo diante de entradas inválidas, erros ou falhas inesperadas. Ou seja, o cliente espera que sejam criados casos de teste que exercitam todas as ramificações e decisões do código. É necessário identificar e classificar erros esperados e inesperados, projetando testes para simular falhas de rede, timeouts e entradas inválidas. É esperado o uso de técnicas de fail early e fail gracefully para mitigar falhas, garantindo que o sistema responda de forma robusta. Além disso, execute fuzz testing para detectar vulnerabilidades em interfaces, validando mensagens de erro e assegurando um feedback claro e seguro ao usuário.
+
+Seu trabalho deve demonstrar habilidades avançadas no desenvolvimento de testes, explorando caminhos críticos do código, simulando cenários adversos e validando mensagens de erro e feedback ao usuário.
+Artefatos e Requisitos para Entrega:
+1 - Desenvolvimento do Sistema CRUD com Interface Web:
+
+    Implementar um sistema CRUD completo, incluindo lógica de backend em Java e interface web funcional.
+    A interface deve permitir operações de cadastro, listagem, edição e exclusão, com design intuitivo.
+    O sistema deve aplicar boas práticas de modularidade e eficiência no desenvolvimento do código, mantendo o equilíbrio entre tamanho e número de componentes.
+
+2 - Desenvolvimento de Casos de Teste Avançados:
+
+    Criar casos de teste que cubram todas as ramificações e decisões do código, utilizando ferramentas de análise de cobertura.
+    Implementar testes com Selenium que interajam com componentes da interface, como campos de formulário, tabelas, botões e alertas de confirmação.
+    Desenvolver testes parametrizados para validar diferentes cenários e entradas de dados.
+    Projetar testes para simular falhas, como:
+        Erros de rede e timeouts.
+        Entradas inválidas e maliciosas.
+        Situações de sobrecarga no sistema.
+    Aplicar técnicas de fuzz testing para explorar vulnerabilidades em entradas e APIs, validando a segurança e clareza das mensagens de erro.
+    Implementar fail early e fail gracefully, garantindo que o sistema identifique e mitigue falhas de forma robusta.
+
+3 - Qualidade e Eficiência do Código:
+
+    Escrever código compacto e eficiente, evitando redundâncias e inflando a base de código desnecessariamente.
+    Garantir a modularidade do sistema, com componentes bem definidos e separados por responsabilidades.
+    Evitar acoplamento excessivo e promover coesão entre as partes do sistema.
+
+4 - Mensagens de Erro e Feedback ao Usuário:
+
+    Implementar mensagens de erro claras e seguras na interface web.
+    Validar o comportamento do sistema diante de cenários adversos, garantindo feedback apropriado para o usuário.
+    Garantir que os erros exibidos sigam boas práticas de segurança, evitando exposição de informações sensíveis.
+
+Entrega dos Artefatos:
+
+    Código-fonte do sistema completo, organizado e documentado.
+    Suíte de testes automatizados cobrindo casos de sucesso, falhas e simulações de cenários críticos.
+    Relatório de cobertura de código e vulnerabilidades detectadas (se houver).
+    Manual de execução, descrevendo como iniciar o sistema, executar os testes e interpretar os resultados.

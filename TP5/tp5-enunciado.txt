@@ -1,0 +1,62 @@
+Teste de Performance 5 – Finalização do Projeto e Automação de Deploy com CI/CD
+Contextualização:
+
+Com o progresso significativo alcançado nas etapas anteriores, o cliente deseja encerrar o projeto com uma entrega formal e uma infraestrutura completamente automatizada. O objetivo desta etapa é garantir que o sistema integrado esteja finalizado, com workflows de CI/CD robustos e automatização completa dos processos de build, teste, análise de segurança e deploy. O cliente espera testes pós-deploy com Selenium que validem a integridade do sistema. Além disso, é muito importante que sejam implementados logs personalizados para facilitar a depuração dos workflows para futuros desenvolvedores do projeto.
+
+Além de finalizar a automação do pipeline, será necessário realizar ajustes finais no código, garantindo modularidade, imutabilidade e alinhamento com boas práticas de desenvolvimento. O foco também estará na configuração de ambientes de deploy seguros e eficientes, que suportem as operações do sistema sem interrupções e com alta disponibilidade.
+
+Como engenheiro de software, sua missão neste TP5 é:
+
+    Finalizar a refatoração e organização do código, promovendo clareza, imutabilidade e coesão.
+    Configurar workflows completos de CI/CD, com atenção especial à automação de deploys.
+    Implementar e monitorar testes pós-deploy, garantindo a integridade do sistema nos ambientes de produção.
+    Formalizar a entrega final, documentando o sistema e demonstrando o funcionamento das automações implementadas.
+
+Artefatos e Requisitos para Entrega:
+1 - Refatoração e Organização do Código:
+
+    Realizar ajustes finais no código, eliminando redundâncias e reorganizando hierarquias de classes.
+    Aplicar o Princípio da Imutabilidade, separando consultas de modificadores e eliminando métodos configuradores.
+    Reorganizar métodos e campos entre superclasses e subclasses, substituindo códigos de tipo por subclasses para promover polimorfismo.
+    Simplificar condicionais complexas, substituindo por cláusulas de guarda e estruturas polimórficas.
+    Remover código morto e otimizar trechos redundantes, reduzindo custos de manutenção.
+
+2 - Configuração de Workflows de CI/CD:
+
+    Completar a automação do pipeline, incluindo:
+        Build do projeto com Gradle.
+        Execução de testes automatizados, incluindo testes pós-deploy com Selenium.
+        Análise estática e dinâmica de segurança (SAST/DAST), detectando vulnerabilidades no código e na aplicação.
+        Upload e gerenciamento de artefatos gerados durante o build.
+    Configurar gatilhos baseados em eventos como releases, merges na branch principal e aprovações manuais.
+    Gerenciar variáveis de ambiente e segredos com segurança, utilizando contextos como secrets e env.
+
+3 - Automatização de Deploys e Gerenciamento de Ambientes:
+
+    Implementar deploys automáticos para diferentes ambientes (ex.: dev, test, prod), configurando regras de proteção para cada um.
+    Aplicar autenticação segura com OIDC para integrar workflows do GitHub com provedores de nuvem (de acordo com o professor).
+    Automatizar a validação pós-deploy com testes que confirmem a integridade e funcionalidade do sistema em produção.
+
+4 - Monitoramento e Depuração dos Workflows:
+
+    Monitorar execuções de workflows no GitHub Actions, utilizando logs personalizados para facilitar a depuração.
+    Criar resumos em Markdown para apresentar resultados de jobs diretamente na interface do GitHub.
+    Adicionar badges de status ao repositório para exibir informações sobre a qualidade do código e o estado dos workflows.
+
+
+Formalização da Entrega Final:
+
+    Documentar todas as etapas do projeto, incluindo:
+        Arquitetura final do sistema.
+        Configuração e funcionamento dos workflows no GitHub Actions.
+        Descrição dos ambientes de deploy e suas proteções.
+        Explicação das estratégias de testes aplicadas, incluindo pós-deploy.
+    Demonstrar o funcionamento do sistema integrado e os pipelines automatizados.
+
+Requisitos Não Funcionais:
+
+    O sistema final deve ser desenvolvido em Java, garantindo compatibilidade com as etapas anteriores.
+    O código deve seguir rigorosamente os princípios de Clean Code e boas práticas de desenvolvimento.
+    A cobertura de testes mínima deve ser de 90%, com evidências apresentadas.
+    Os workflows no GitHub Actions devem ser organizados, seguros e documentados.
+    O pipeline de deploy deve ser automatizado e incluir etapas de aprovação manual para produção.

@@ -1,0 +1,25 @@
+# Configurações de teste para testes Selenium com Spring Boot
+# Este perfil é ativado nos testes com @ActiveProfiles("test")
+
+# Define porta fixa para testes (mesma usada em TestConfig.BASE_URL)
+server.port=8080
+
+# Banco de dados H2 em memória isolado para testes
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# JPA/Hibernate - recria schema a cada execução de testes
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.show-sql=false
+
+# Desabilita console H2 em testes
+spring.h2.console.enabled=false
+
+# Reduz logging durante testes
+logging.level.root=WARN
+logging.level.org.example.tp2pb=INFO
+logging.level.org.springframework.web=WARN
+logging.level.org.hibernate=WARN

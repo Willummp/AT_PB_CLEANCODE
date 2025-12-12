@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<footer th:fragment="footer-scripts" class="container text-center mt-5 py-3 border-top">
+    <p>&copy; 2025 - Projeto CRUD Robusto</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <script>
+        // Adiciona confirmação em todos os links com a classe 'btn-delete'
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function (event) {
+                if (!confirm('Atenção: Esta ação é irreversível. Deseja realmente excluir este evento?')) {
+                    event.preventDefault(); // Cancela a ação (navegação do link)
+                }
+            });
+        });
+    </script>
+</footer>
+
+</body>
+</html>
