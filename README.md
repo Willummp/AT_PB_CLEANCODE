@@ -1,6 +1,6 @@
-# 📚 Relatório Integrado de Compliance e Rastreabilidade - Projeto de Bloco
+# 📚 Entrega Geral - Projeto de Bloco de Engenharia Disciplinada de Softwares
 **Aluno:** Lucas Ferreira
-**Curso:** Desenvolvimento Data-Driven (Java/Spring/Quality Assurance)
+**Curso:** Engenharia de Software
 
 > [!IMPORTANT]
 > **Configuração de CI/CD (GitHub Actions)**
