@@ -106,6 +106,10 @@ public class EventoListPage {
         // Aceita o alerta de confirmação do JavaScript
         wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
+
+        // Aguarda o evento desaparecer da lista para evitar race conditions
+        wait.until(ExpectedConditions.not(
+                ExpectedConditions.textToBePresentInElementLocated(TABELA_EVENTOS_BODY, nomeEvento)));
     }
 
     /**
