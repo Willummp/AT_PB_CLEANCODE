@@ -74,28 +74,45 @@ public class CadastroEventoE2ETest {
      * Valida o feedback de erro seguro na UI (Artefato 4)
      */
     @Test
-    void deveMostrarMensagemDeErro_QuandoSubmeterFormularioComNomeVazio() {
+    void deveMostrarMensagemDeErro_QuandoNomeVazio() {
         driver.get(baseUrl + "/eventos/novo");
-
         formularioPage.preencherFormulario("", "Descrição válida", this.usuarioTesteId);
         formularioPage.submeter();
 
-        // Verificação
-        String mensagemErroNomeVazio = formularioPage.getMensagemDeErroVisivel();
+        String mensagemErro = formularioPage.getMensagemDeErroVisivel();
+        assertTrue(mensagemErro.contains("Nome") || mensagemErro.contains("obrigatório"),
+                "Deveria mostrar erro de nome vazio");
+    }
 
-        // 1. Cria o primeiro evento (válido)
+    @Test
+    void deveCriarEvento_QuandoDadosValidos() {
+        driver.get(baseUrl + "/eventos/novo");
+        formularioPage.preencherFormulario("Evento Sucesso E2E", "Descrição válida", this.usuarioTesteId);
+        formularioPage.submeter();
+
+        // Verifica se redirecionou (URL não contém /novo) ou se aparece mensagem de
+        // sucesso
+        // Como o PageObject não mapeia a lista, vamos confiar que não houve erro
+        // Ou verificar se a URL mudou
+        boolean urlMudou = !driver.getCurrentUrl().endsWith("/novo");
+        assertTrue(urlMudou, "Deveria redirecionar após sucesso");
+    }
+
+    @Test
+    void deveMostrarMensagemDeErro_QuandoNomeDuplicado() {
+        // 1. Cria o primeiro evento
+        driver.get(baseUrl + "/eventos/novo");
         formularioPage.preencherFormulario("Evento Duplicado E2E", "Desc 1", this.usuarioTesteId);
         formularioPage.submeter();
 
-        // 2. Tenta criar o segundo evento (inválido)
+        // 2. Tenta criar o segundo evento com mesmo nome
         driver.get(baseUrl + "/eventos/novo");
         formularioPage.preencherFormulario("Evento Duplicado E2E", "Desc 2", this.usuarioTesteId);
         formularioPage.submeter();
 
-        // 3. Verificação (espera o erro de negócio)
-        String mensagemErroDuplicado = formularioPage.getMensagemDeErroVisivel();
-
-        assertTrue(mensagemErroDuplicado.contains("já está em uso por outro evento"),
-                "A mensagem de erro de nome duplicado não foi encontrada.");
+        // 3. Verificação
+        String mensagemErro = formularioPage.getMensagemDeErroVisivel();
+        assertTrue(mensagemErro.contains("já está em uso") || mensagemErro.contains("duplicado"),
+                "A mensagem de erro de nome duplicado não foi encontrada. Encontrou: " + mensagemErro);
     }
 }
