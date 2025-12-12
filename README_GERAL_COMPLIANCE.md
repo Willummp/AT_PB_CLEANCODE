@@ -1,4 +1,18 @@
 # 📚 Relatório Integrado de Compliance e Rastreabilidade - Projeto de Bloco
+
+> [!IMPORTANT]
+> **Configuração de CI/CD (GitHub Actions)**
+> 
+> Este repositório opera como um **Monorepo**, contendo múltiplos projetos (TP1 a TP5 e AT).
+> Para garantir que os pipelines de integração contínua (CI) funcionem corretamente neste formato unificado, as configurações de workflow foram centralizadas na pasta raiz `.github/workflows`.
+> 
+> **Como funciona:**
+> - Cada projeto (TP4, TP5, AT) tem seu próprio arquivo YAML dedicado (ex: `tp5-ci.yml`).
+> - Os workflows utilizam filtros de caminho (`paths`), ou seja, o pipeline do TP5 só é disparado quando há alterações dentro da pasta `TP5/**`.
+> - Os jobs estão configurados com `working-directory` para executar os comandos Maven dentro da subpasta correta de cada projeto.
+>
+> **Status:** ✅ Configurado e Pronto para Uso no GitHub.
+
 **Aluno:** Lucas Ferreira
 **Curso:** Desenvolvimento Data-Driven (Java/Spring/Quality Assurance)
 
